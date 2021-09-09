@@ -24,6 +24,8 @@
 
 		<!-- 设置编码为UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<maven.compiler.version>3.8.0</maven.compiler.version>
 	</properties>
 
 	<!-- Maven仓库定义 -->
@@ -75,4 +77,21 @@
 		<module>chapter20-rest</module>
 		<module>chapter21-invade</module>
     </modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.version}</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

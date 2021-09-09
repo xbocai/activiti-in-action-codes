@@ -209,21 +209,20 @@
                     <artifactId>commons-logging</artifactId>
                     <groupId>commons-logging</groupId>
                 </exclusion>
-            </exclusions>
+				<exclusion>
+					<artifactId>geronimo-jpa_3.0_spec</artifactId>
+					<groupId>org.apache.geronimo.specs</groupId>
+				</exclusion>
+			</exclusions>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jta_1.1_spec</artifactId>
-            <version>1.1.1</version>
-        </dependency>
+        </dependency>-->
 
-        <!-- LDAP -->
+		<!-- LDAP -->
         <!-- Apache DS (LDAP Server) -->
         <dependency>
             <groupId>org.apache.directory.server</groupId>

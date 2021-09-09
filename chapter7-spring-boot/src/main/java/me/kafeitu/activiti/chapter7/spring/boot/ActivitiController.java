@@ -7,6 +7,7 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.apache.catalina.manager.JspHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +54,9 @@ public class ActivitiController {
 
     @RequestMapping("/process/start/{processDefinitionId}")
     public String startProcess(@PathVariable("processDefinitionId") String processDefinitionId) {
-        ProcessInstance processInstance = runtimeService.startProcessInstanceById(processDefinitionId);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("create", "123");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceById(processDefinitionId, paramMap);
         System.out.println("成功启动了流程：" + processInstance.getId());
         return "redirect:/activiti/tasks";
     }
@@ -61,13 +65,19 @@ public class ActivitiController {
     public ModelAndView tasks() {
         ModelAndView mav = new ModelAndView("tasks");
         List<Task> list = taskService.createTaskQuery().list();
+        for (Task task : list) {
+            System.out.println("TaskVaris:" + task.getProcessVariables());
+            System.out.println("LocalTaskVaris:" + task.getTaskLocalVariables());
+        }
         mav.addObject("tasks", list);
         return mav;
     }
 
     @RequestMapping("/task/complete/{taskId}")
     public String completeTask(@PathVariable("taskId") String taskId) {
-        taskService.complete(taskId);
+        Map<String, Object> map = new HashMap<>();
+        map.put("comilete", taskId);
+        taskService.complete(taskId, map);
         return "redirect:/activiti/tasks";
     }
 

@@ -10,6 +10,10 @@
 	<artifactId>chapter6-oa-forms</artifactId>
 	<packaging>war</packaging>
 	<name>Activiti实战 第6章《任务表单》</name>
+	<properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
 
 	<!-- 依赖定义 -->
 	<dependencies>
@@ -66,6 +70,8 @@
 			<version>${jetty.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+
 		<!-- WEB end -->
 
 		<!-- Jackson JSON Mapper -->
@@ -136,8 +142,8 @@
 				<version>3.0</version>
 				<configuration>
 					<!-- Activiti最低要求JDK1.5 -->
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
